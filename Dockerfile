@@ -9,8 +9,8 @@ LABEL \
     org.opencontainers.image.authors="richard.lobb@canterbury.ac.nz,j.hoedjes@hva.nl,d.h.bowes@herts.ac.uk" \
     org.opencontainers.image.title="JobeInABox" \
     org.opencontainers.image.description="JobeInABox" \
-    org.opencontainers.image.documentation="https://github.com/trampgeek/jobeinabox" \
-    org.opencontainers.image.source="https://github.com/trampgeek/jobeinabox"
+    org.opencontainers.image.documentation="https://github.com/Evo-Learning-project/jobeinabox" \
+    org.opencontainers.image.source="https://github.com/Evo-Learning-project/jobeinabox"
 
 ARG TZ=Pacific/Auckland
 # Set up the (apache) environment variables
@@ -37,25 +37,25 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
     apt-get update && \
     apt-get --no-install-recommends install -yq \
-        acl \
-        apache2 \
-        build-essential \
-        fp-compiler \
-        git \
-        libapache2-mod-php \
-        nodejs \
-        octave \
-        openjdk-16-jdk \
-        php \
-        php-cli \
-        php-mbstring \
-        python3 \
-        python3-pip \
-        python3-setuptools \
-        sqlite3 \
-        sudo \
-        tzdata \
-        unzip && \
+    acl \
+    apache2 \
+    build-essential \
+    fp-compiler \
+    git \
+    libapache2-mod-php \
+    nodejs \
+    octave \
+    openjdk-16-jdk \
+    php \
+    php-cli \
+    php-mbstring \
+    python3 \
+    python3-pip \
+    python3-setuptools \
+    sqlite3 \
+    sudo \
+    tzdata \
+    unzip && \
     python3 -m pip install pylint && \
     pylint --reports=no --score=n --generate-rcfile > /etc/pylintrc && \
     ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
@@ -70,7 +70,7 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     mkdir -p /var/crash && \
     chmod 777 /var/crash && \
     echo '<!DOCTYPE html><html lang="en"><title>Jobe</title><h1>Jobe</h1></html>' > /var/www/html/index.html && \
-    git clone https://github.com/trampgeek/jobe.git /var/www/html/jobe && \
+    git clone https://github.com/Evo-Learning-project/jobe /var/www/html/jobe && \
     apache2ctl start && \
     cd /var/www/html/jobe && \
     /usr/bin/python3 /var/www/html/jobe/install && \
