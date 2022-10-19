@@ -28,7 +28,6 @@ COPY container-test.sh /
 
 # download repo info to invalidate cache on new pushes of jobe
 ADD https://api.github.com/repos/Evo-Learning-project/jobe/git/refs/heads/master /tmp/invalidate_cache.json
-ADD https://api.github.com/repos/Evo-Learning-project/jobe/git/refs/heads/master /tmp/invalidate_cache2.json
 
 
 # Set timezone
