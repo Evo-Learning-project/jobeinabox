@@ -27,7 +27,7 @@ COPY 000-jobe.conf /
 COPY container-test.sh /
 
 # download repo info to invalidate cache on new pushes of jobe
-ADD https://api.github.com/repos/Evo-Learning-project/jobe/git/refs/heads/master version.json
+ADD https://api.github.com/repos/Evo-Learning-project/jobe/git/refs/heads/master /tmp/invalidate_cache.json
 
 
 # Set timezone
@@ -75,7 +75,7 @@ RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     mkdir -p /var/crash && \
     chmod 777 /var/crash && \
     echo '<!DOCTYPE html><html lang="en"><title>Jobe</title><h1>Jobe</h1></html>' > /var/www/html/index.html && \
-    git clone https://github.com/Evo-Learning-project/jobe /var/www/html/jobe && \
+    git clone -b master https://github.com/Evo-Learning-project/jobe /var/www/html/jobe && \
     apache2ctl start && \
     cd /var/www/html/jobe && \
     /usr/bin/python3 /var/www/html/jobe/install && \
