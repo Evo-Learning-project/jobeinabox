@@ -26,6 +26,10 @@ COPY 000-jobe.conf /
 # Copy test script
 COPY container-test.sh /
 
+# download repo info to invalidate cache on new pushes of jobe
+ADD https://api.github.com/repos/Evo-Learning-project/jobe/git/refs/heads/master version.json
+
+
 # Set timezone
 # Install extra packages
 # Redirect apache logs to stdout
@@ -33,6 +37,7 @@ COPY container-test.sh /
 # Configure php
 # Get and install jobe
 # Clean up
+
 RUN ln -snf /usr/share/zoneinfo/"$TZ" /etc/localtime && \
     echo "$TZ" > /etc/timezone && \
     apt-get update && \
